@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  - var image_names = ["black beans.jpg", "black eyed peas.jpg", "green beans.jpeg", "lima beans.jpg", "soy beans.jpg"]
+  - for(let i=0; i < 3; i++) {
+    - var value = Math.floor(Math.random()*5)
+    - var imageSrc = image_names[value]
+      img(src="/images/" + imageSrc, alt="Images of beans", height=200, width=200)
+  - }
