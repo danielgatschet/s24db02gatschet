@@ -16,6 +16,48 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
 
+var Legumes = require("./models/legumes");
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+ // Delete everything
+  await Legumes.deleteMany();
+
+  let instance1 = new
+
+  Legumes({legume_type:"lima beans", amount:5, price:3});
+
+    instance1.save().then(doc=>{
+      console.log("First object saved")}
+      ).catch(err=>{
+        console.error(err)
+      });
+  
+  let instance2 = new
+
+  Legumes({legume_type:"green beans", amount:12, price:5.34});
+
+    instance2.save().then(doc=>{
+      console.log("First object saved")}
+      ).catch(err=>{
+        console.error(err)
+      });
+
+  let instance3 = new
+
+  Legumes({legume_type:"black eyed peas", amount:21, price:17.97});
+
+    instance3.save().then(doc=>{
+      console.log("First object saved")}
+      ).catch(err=>{
+        console.error(err)
+      });
+}
+
+let reseed = true;
+if (reseed) {recreateDB();}
+
+var resourceRouter = require('./routes/resource');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var legumesRouter = require('./routes/legumes');
@@ -39,6 +81,7 @@ app.use('/users', usersRouter);
 app.use('/legumes', legumesRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource', resourceRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

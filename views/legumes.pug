@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  -var results = [`legume_type`, `amount`, `price`]
+  -let items = results
   div(class="container-fluid")
     div(class="row")
-    each item,index in results
+    each item,index in items
       div(class="col-sm-2") Object #{index+1}: #{item}
