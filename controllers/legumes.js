@@ -11,9 +11,9 @@ exports.legumes_detail = function(req, res) {
 exports.legumes_create_post = async function(req, res) {
     console.log(req.body)
     let document = new Legumes();
-    document.legumes_type = req.body.legumes_type;
-    document.cost = req.body.cost;
-    document.size = req.body.size;
+    document.legume_type = req.body.legume_type;
+    document.amount = req.body.amount;
+    document.price = req.body.price;
     try{
         let result = await document.save();
         res.send(result);
