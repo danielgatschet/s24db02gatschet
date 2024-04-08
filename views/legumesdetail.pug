@@ -1,0 +1,21 @@
+extends layout
+
+block content
+ h1= title
+ - let legumesid = toShow._id
+ - let legumes_type = toShow.legume_type
+ - let legumesamount = toShow.amount
+ - let legumesprice = toShow.price
+ div
+ div.row
+ div(class='legumesAttr mr-3') legumes ID is:
+ div #{legumesid}
+ div.row
+ div(class='legumesAttr mr-3') legumes Type is:
+ div #{legumes_type}
+ div.row
+ div(class='legumesAttr mr-3') legumes Amount is:
+ div #{legumesamount}
+ div.row
+ div(class='legumesAttr mr-3') legumes Price is:
+ div #{legumesprice}

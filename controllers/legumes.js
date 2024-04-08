@@ -87,3 +87,15 @@ exports.legumes_view_all_Page = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+exports.legumes_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+        result = await Legumes.findById( req.query.id)
+        res.render('legumesdetail', { title: 'Legumes Detail', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+   };
