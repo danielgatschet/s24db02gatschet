@@ -31,8 +31,16 @@ exports.legumes_create_post = async function(req, res) {
     } 
 };
 // Handle legumes delete from on DELETE.
-exports.legumes_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: Legumes delete DELETE ' + req.params.id);
+exports.legumes_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Legumes.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 // Handle legumes update form on PUT.
 exports.legumes_update_put = async function(req, res) {
