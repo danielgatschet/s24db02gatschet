@@ -6,7 +6,8 @@ var router = express.Router();
 router.get('/', legumes_controlers.legumes_view_all_Page);
 router.get('/detail', legumes_controlers.legumes_view_one_Page);
 router.get('/create', legumes_controlers.legumes_create_Page);
-router.get('/update', legumes_controlers.legumes_update_Page)
+router.get('/update', legumes_controlers.legumes_update_Page);
+router.get('/delete', legumes_controlers.legumes_delete_Page);
 
 
 module.exports = router;

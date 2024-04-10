@@ -1,0 +1,51 @@
+extends layout
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let legumesid = toShow._id
+        - let legumes_type = toShow.legume_type
+        - let legumesprice = toShow.price
+        - let legumesamount = toShow.amount
+        - let actionid = "/resource/legumes/" + legumesid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='legumesAttr mr-3') legumes ID is:
+                div #{legumesid}
+            div.row
+                div(class='legumesAttr mr-3') legumes Type is:
+                div #{legumes_type}
+            div.row
+                div(class='legumesAttr mr-3') legumes amount is:
+                div #{legumesamount}
+            div.row
+                div(class='legumesAttr mr-3') legumes price is:
+                div #{legumesprice}
+
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+        function cancel() {
+            // Go back to the home page for the legumes collection
+            window.location.href='/legumes'
+        }
+    script.
+        function deleteOnid() {
+            console.log("starting delete")
+            // delete first
+            fetch(actionid, {
+                method: 'DELETE' // Don't need a body for the delete
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/legumes'
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+            });
+        }
