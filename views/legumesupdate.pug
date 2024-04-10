@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    h1= title
+    - let legumesid = toShow._id
+    - let legumes_type = toShow.legume_type
+    - let legumesamount = toShow.amount
+    - let legumesprice = toShow.price
+
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{legumesid}
+    - let actionid = "/resource/legumes/" + legumesid
+    form(id='legumesForm', action= actionid, method="PUT")
+        div.form-group
+            label.legumesAttr(for='legume_type') legumes type
+            input#legume_type(type='text', name='legume_type', value= legumes_type )
+        div.form-group
+            label.legumesAttr(for='amount') legumes amount
+            input#amount(type='number', name='amount', value= legumesamount )
+        div.form-group
+            label.legumesAttr(for='price') legumes price
+            input#price(type='number', name='price', value= legumesprice )
+        input(type="submit")
+
+    script.
+        document.forms['legumesForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeded")
+        // TODO handle body
+            }).catch((error) => {
+        // TODO handle error
+                alert("Update failed " + error )
+            });
+        });

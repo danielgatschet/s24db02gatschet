@@ -110,3 +110,15 @@ exports.legumes_create_Page = function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
    };
+
+exports.legumes_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await Legumes.findById(req.query.id)
+        res.render('legumesupdate', { title: 'Legumes Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
