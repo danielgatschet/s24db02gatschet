@@ -1,26 +1,13 @@
+
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} 
-  p Making a change in the paragraph text for the assignment 
-
-  button(type="button", class="btn btn-secondary", onclick="double(value, power)") I am a button
-
-  p
-
-  div(id="double") Up the amount
-
-  script.
-    var value = 0;
-    var power = 1;
-
-    out = document.getElementById("double")
-    function double(value, power){
-      value += 1
-      power *= 2
-
-      out.innerHTML = "Two to the power of " + value + " is " + power
-    }
-
-  a(href="/legumes") Link to Legumes
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/legumes") Link to Legumes
+    br
+    a(href="/logout") Logout
