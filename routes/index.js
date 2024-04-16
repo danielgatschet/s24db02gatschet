@@ -5,7 +5,7 @@ var Account = require('../models/account');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Legumes App', users : req.user});
+  res.render('index', { title: 'Legumes App', user : req.user});
 });
 
 router.get('/register', function(req, res) {
@@ -38,7 +38,7 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.render('login', { title: 'Legumes App Login', user : req.user });
+res.render('login', { title: 'Legumes App Login', user : req.user });
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
